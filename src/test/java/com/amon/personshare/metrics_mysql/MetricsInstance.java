@@ -19,7 +19,7 @@ public class MetricsInstance {
     private static MysqlReporter reporter;
 
     //连接路径
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/metrics";
+    private static final String URL = "jdbc:mysql://192.168.1.165:3306/metrics";
     //用户名
     private static final String USERNAME = "root";
     //密码
