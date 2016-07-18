@@ -1,6 +1,6 @@
 # Mysql Metrics Reporter
 
-The goals of this repo is to write a mysql Metrics Reporter based on metrics-core and metrics-healthchecks.
+The goals of this repo is to write a mysql metrics reporter based on metrics-core and metrics-healthchecks.
 
 In my github , also has a repo can display all data in mysql to a web-client , the address is 
 
@@ -10,4 +10,4 @@ In my github , also has a repo can display all data in mysql to a web-client , t
 
 2、 after first step, you should run mvn package to get the jar;
 
-3、 put the jar to project you want use， so enjoy it！
+3、 put the jar to project you want use, then enjoy it！
