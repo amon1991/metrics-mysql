@@ -1,0 +1,18 @@
+# Created by .ignore support plugin (hsz.mobi)
+/ws/*
+/target/*
+/bin/*
+.*
+/*/target/*
+/*/bin/*
+/*/.*
+/*/*/target/*
+/*/*/bin/*
+/*/*/.*
+*.iml
+*.ipr
+*.iws
+!.gitignore
+!.jshintrc
+/target/
+/build/
