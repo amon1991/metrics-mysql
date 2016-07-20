@@ -40,17 +40,17 @@ public class GaugesTest {
 
         MetricsInstance.getMysqlReporterInstance().start(1, TimeUnit.SECONDS);
 
-        GaugesTest gaugesTest = new GaugesTest("job");
+        GaugesTest gaugesTest = new GaugesTest("job-2");
 
         int timeIndex = 1;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1000; i++) {
             gaugesTest.add();
             Thread.sleep(1000);
             System.out.println("usetime:"+(timeIndex++)+"s");
         }
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1000; i++) {
             gaugesTest.pool();
             Thread.sleep(1000);
             System.out.println("usetime:"+(timeIndex++)+"s");

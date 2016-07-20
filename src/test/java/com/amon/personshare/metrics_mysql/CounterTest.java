@@ -16,7 +16,7 @@ public class CounterTest {
 
     private static Counter pendingJobs =
             MetricsInstance.getMetricRegistryInstance()
-                    .counter(MetricRegistry.name(CounterTest.class, "pedding-jobs_2"));
+                    .counter(MetricRegistry.name(CounterTest.class, "pedding-jobs_3"));
 
     private static Queue<String> queue = new LinkedList<String>();
 
@@ -36,7 +36,7 @@ public class CounterTest {
 
         CounterTest counterTest = new CounterTest();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             counterTest.add(i+"");
             counterTest.add(i+"");
             Thread.sleep(1000);
