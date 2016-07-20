@@ -2,7 +2,7 @@
 
 The goals of this repo is to write a mysql metrics reporter based on metrics-core and metrics-healthchecks.
 
-In my github , also has a repo can display all data in mysql to a web-client , the address is 
+In my github , also has a repo can display all data in mysql to a web-client , the address is https://github.com/amon1991/metrics-web
 
 # Quick up and running
 
