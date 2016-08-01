@@ -37,7 +37,7 @@ create table counter
    appname              varchar(100),
    tm                   datetime,
    metricskey           varchar(200),
-   value                int(11)
+   value                bigint(20)
 );
 
 alter table counter comment '计数器表';
@@ -61,7 +61,7 @@ create table gauges
    appname              varchar(100),
    tm                   datetime,
    metricskey           varchar(200),
-   value                int(11)
+   value                bigint(20)
 );
 
 alter table gauges comment '简单计量表';
@@ -110,9 +110,9 @@ create table histograms
    appname              varchar(100),
    tm                   datetime,
    metricskey           varchar(200),
-   count                int(11),
-   min                  int(11),
-   max                  int(11),
+   count                bigint(20),
+   min                  bigint(20),
+   max                  bigint(20),
    mean                 double,
    stddev               double,
    median               double,
@@ -144,7 +144,7 @@ create table meters
    appname              varchar(100),
    tm                   datetime,
    metricskey           varchar(200),
-   count                int(11),
+   count                bigint(20),
    meanrate             double,
    onemrate             double,
    fivemrate            double,
@@ -172,7 +172,7 @@ create table timers
    appname              varchar(100),
    tm                   datetime,
    metricskey           varchar(200),
-   count                int(11),
+   count                bigint(20),
    meanrate             double,
    onemrate             double,
    fivemrate            double,
