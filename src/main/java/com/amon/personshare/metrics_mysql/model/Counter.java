@@ -9,16 +9,20 @@ public class Counter {
     private String appname;
     private long tm;
     private String metricskey;
-    private int value;
+    private long value;
 
     public Counter() {
     }
 
-    public Counter(String appname, long tm, String metricskey, int value) {
-        this.appname = appname;
-        this.tm = tm;
-        this.metricskey = metricskey;
-        this.value = value;
+    @Override
+    public String toString() {
+        return "Counter{" +
+                "id=" + id +
+                ", appname='" + appname + '\'' +
+                ", tm=" + tm +
+                ", metricskey='" + metricskey + '\'' +
+                ", value=" + value +
+                '}';
     }
 
     public int getId() {
@@ -53,11 +57,11 @@ public class Counter {
         this.metricskey = metricskey;
     }
 
-    public int getValue() {
+    public long getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(long value) {
         this.value = value;
     }
 }

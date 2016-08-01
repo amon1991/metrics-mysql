@@ -15,12 +15,16 @@ public class HealthChecks {
     public HealthChecks() {
     }
 
-    public HealthChecks(String appname, long tm, String metricskey, boolean ishealth, String message) {
-        this.appname = appname;
-        this.tm = tm;
-        this.metricskey = metricskey;
-        this.ishealth = ishealth;
-        this.message = message;
+    @Override
+    public String toString() {
+        return "HealthChecks{" +
+                "id=" + id +
+                ", appname='" + appname + '\'' +
+                ", tm=" + tm +
+                ", metricskey='" + metricskey + '\'' +
+                ", ishealth=" + ishealth +
+                ", message='" + message + '\'' +
+                '}';
     }
 
     public int getId() {

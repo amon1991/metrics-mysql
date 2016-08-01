@@ -9,9 +9,9 @@ public class Histograms {
     private String appname;
     private long tm;
     private String metricskey;
-    private int count;
-    private int min;
-    private int max;
+    private long count;
+    private long min;
+    private long max;
     private double mean;
     private double stddev;
     private double median;
@@ -24,21 +24,49 @@ public class Histograms {
     public Histograms() {
     }
 
-    public Histograms(String appname, long tm, String metricskey, int count, int min, int max, double mean, double stddev, double median, double senvenfive, double ninefive, double nineeight, double ninenine, double nineninenine) {
-        this.appname = appname;
-        this.tm = tm;
-        this.metricskey = metricskey;
+    @Override
+    public String toString() {
+        return "Histograms{" +
+                "id=" + id +
+                ", appname='" + appname + '\'' +
+                ", tm=" + tm +
+                ", metricskey='" + metricskey + '\'' +
+                ", count=" + count +
+                ", min=" + min +
+                ", max=" + max +
+                ", mean=" + mean +
+                ", stddev=" + stddev +
+                ", median=" + median +
+                ", senvenfive=" + senvenfive +
+                ", ninefive=" + ninefive +
+                ", nineeight=" + nineeight +
+                ", ninenine=" + ninenine +
+                ", nineninenine=" + nineninenine +
+                '}';
+    }
+
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
         this.count = count;
+    }
+
+    public long getMin() {
+        return min;
+    }
+
+    public void setMin(long min) {
         this.min = min;
+    }
+
+    public long getMax() {
+        return max;
+    }
+
+    public void setMax(long max) {
         this.max = max;
-        this.mean = mean;
-        this.stddev = stddev;
-        this.median = median;
-        this.senvenfive = senvenfive;
-        this.ninefive = ninefive;
-        this.nineeight = nineeight;
-        this.ninenine = ninenine;
-        this.nineninenine = nineninenine;
     }
 
     public int getId() {
@@ -71,26 +99,6 @@ public class Histograms {
 
     public void setMetricskey(String metricskey) {
         this.metricskey = metricskey;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getMin() {
-        return min;
-    }
-
-    public void setMin(int min) {
-        this.min = min;
-    }
-
-    public int getMax() {
-        return max;
     }
 
     public void setMax(int max) {

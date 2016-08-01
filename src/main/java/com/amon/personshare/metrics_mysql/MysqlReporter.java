@@ -100,14 +100,14 @@ public class MysqlReporter extends ScheduledReporter {
         long tm = System.currentTimeMillis();
 
         //gauges
-        List<Gauges> gaugesList = new ArrayList<Gauges>();
+        List<Gauges> gaugesList = new ArrayList<>();
         for (Map.Entry<String, Gauge> entry : gauges.entrySet()) {
 
             Gauges mygauges = new Gauges();
             mygauges.setAppname(this.appName);
             mygauges.setMetricskey(entry.getKey());
             mygauges.setTm(tm);
-            mygauges.setValue(Integer.parseInt(entry.getValue().getValue()+""));
+            mygauges.setValue(Long.parseLong(entry.getValue().getValue() + ""));
 
             gaugesList.add(mygauges);
 
@@ -122,8 +122,8 @@ public class MysqlReporter extends ScheduledReporter {
             mycounter.setAppname(this.appName);
             mycounter.setMetricskey(entry.getKey());
             mycounter.setTm(tm);
-            mycounter.setValue(Integer.parseInt(entry.getValue()
-                    .getCount()+""));
+            mycounter.setValue(Long.parseLong(entry.getValue()
+                    .getCount() + ""));
 
             counterList.add(mycounter);
 
@@ -131,7 +131,7 @@ public class MysqlReporter extends ScheduledReporter {
         this.saveCounter2Mysql(counterList);
 
         //histograms
-        List<Histograms> histogramsList = new ArrayList<Histograms>();
+        List<Histograms> histogramsList = new ArrayList<>();
         for (Map.Entry<String, Histogram> entry : histograms.entrySet()) {
             Histogram histogram = entry.getValue();
             Snapshot snapshot = histogram.getSnapshot();
@@ -141,8 +141,8 @@ public class MysqlReporter extends ScheduledReporter {
             myhistograms.setTm(tm);
             myhistograms.setMetricskey(entry.getKey());
             myhistograms.setCount(snapshot.size());
-            myhistograms.setMax(Integer.parseInt(snapshot.getMax()+""));
-            myhistograms.setMin(Integer.parseInt(snapshot.getMin()+""));
+            myhistograms.setMax(snapshot.getMax());
+            myhistograms.setMin(snapshot.getMin());
             myhistograms.setMean(snapshot.getMean());
             myhistograms.setStddev(snapshot.getStdDev());
             myhistograms.setMean(snapshot.getMean());
@@ -158,7 +158,7 @@ public class MysqlReporter extends ScheduledReporter {
         this.saveHistograms2Mysql(histogramsList);
 
         //meters
-        List<Meters> metersList = new ArrayList<Meters>();
+        List<Meters> metersList = new ArrayList<>();
         for (Map.Entry<String, Meter> entry : meters.entrySet()) {
 
             Meters mymeters = new Meters();
@@ -166,7 +166,7 @@ public class MysqlReporter extends ScheduledReporter {
             mymeters.setTm(tm);
             mymeters.setMetricskey(entry.getKey());
 
-            mymeters.setCount(Integer.parseInt(entry.getValue().getCount()+""));
+            mymeters.setCount(entry.getValue().getCount());
             mymeters.setMeanrate(convertRate(entry.getValue().getMeanRate()));
             mymeters.setOnemrate(convertRate(entry.getValue().getOneMinuteRate()));
             mymeters.setFivemrate(convertRate(entry.getValue().getFiveMinuteRate()));
@@ -178,7 +178,7 @@ public class MysqlReporter extends ScheduledReporter {
         this.saveMeters2Mysql(metersList);
 
         //Timer
-        List<Timers> timersList = new ArrayList<Timers>();
+        List<Timers> timersList = new ArrayList<>();
         for (Map.Entry<String, Timer> entry : timers.entrySet()) {
             Timer timer = entry.getValue();
             Snapshot snapshot = timer.getSnapshot();
@@ -190,7 +190,7 @@ public class MysqlReporter extends ScheduledReporter {
             mytimers.setMetricskey(entry.getKey());
 
             //timer
-            mytimers.setCount(Integer.parseInt(timer.getCount()+""));
+            mytimers.setCount(timer.getCount());
             mytimers.setMeanrate(convertRate(timer.getMeanRate()));
             mytimers.setOnemrate(convertRate(timer.getOneMinuteRate()));
             mytimers.setFivemrate(convertRate(timer.getFiveMinuteRate()));
@@ -214,7 +214,7 @@ public class MysqlReporter extends ScheduledReporter {
         this.saveTimers2Mysql(timersList);
 
         //HealthCheck
-        List<HealthChecks> healthChecksList = new ArrayList<HealthChecks>();
+        List<HealthChecks> healthChecksList = new ArrayList<>();
 
         if (null!=healthCheckRegistry){
 
@@ -274,7 +274,7 @@ public class MysqlReporter extends ScheduledReporter {
                 pstmt.setString(1, gauges.getAppname());
                 pstmt.setTimestamp(2,new Timestamp(gauges.getTm()));
                 pstmt.setString(3,gauges.getMetricskey());
-                pstmt.setInt(4, gauges.getValue());
+                pstmt.setLong(4, gauges.getValue());
                 pstmt.addBatch();//加入批量处理
             }
 
@@ -284,7 +284,6 @@ public class MysqlReporter extends ScheduledReporter {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            gaugesList = null;
             dao.close(pstmt,con);
         }
 
@@ -311,7 +310,7 @@ public class MysqlReporter extends ScheduledReporter {
                 pstmt.setString(1, counter.getAppname());
                 pstmt.setTimestamp(2,new Timestamp(counter.getTm()));
                 pstmt.setString(3,counter.getMetricskey());
-                pstmt.setInt(4, counter.getValue());
+                pstmt.setLong(4, counter.getValue());
                 pstmt.addBatch();//加入批量处理
             }
 
@@ -321,7 +320,6 @@ public class MysqlReporter extends ScheduledReporter {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            countersList = null;
             dao.close(pstmt,con);
         }
 
@@ -350,9 +348,9 @@ public class MysqlReporter extends ScheduledReporter {
                 pstmt.setString(1, histograms.getAppname());
                 pstmt.setTimestamp(2,new Timestamp(histograms.getTm()));
                 pstmt.setString(3,histograms.getMetricskey());
-                pstmt.setInt(4, histograms.getCount());
-                pstmt.setInt(5, histograms.getMin());
-                pstmt.setInt(6, histograms.getMax());
+                pstmt.setLong(4, histograms.getCount());
+                pstmt.setLong(5, histograms.getMin());
+                pstmt.setLong(6, histograms.getMax());
                 pstmt.setDouble(7,histograms.getMean());
                 pstmt.setDouble(8,histograms.getStddev());
                 pstmt.setDouble(9,histograms.getMedian());
@@ -371,7 +369,6 @@ public class MysqlReporter extends ScheduledReporter {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            histogramsList = null;
             dao.close(pstmt,con);
         }
 
@@ -399,7 +396,7 @@ public class MysqlReporter extends ScheduledReporter {
                 pstmt.setString(1, meters.getAppname());
                 pstmt.setTimestamp(2,new Timestamp(meters.getTm()));
                 pstmt.setString(3,meters.getMetricskey());
-                pstmt.setInt(4, meters.getCount());
+                pstmt.setLong(4, meters.getCount());
                 pstmt.setDouble(5,meters.getMeanrate());
                 pstmt.setDouble(6,meters.getOnemrate());
                 pstmt.setDouble(7,meters.getFivemrate());
@@ -414,7 +411,6 @@ public class MysqlReporter extends ScheduledReporter {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            metersList = null;
             dao.close(pstmt,con);
         }
 
@@ -442,7 +438,7 @@ public class MysqlReporter extends ScheduledReporter {
                 pstmt.setString(1, timers.getAppname());
                 pstmt.setTimestamp(2,new Timestamp(timers.getTm()));
                 pstmt.setString(3,timers.getMetricskey());
-                pstmt.setInt(4, timers.getCount());
+                pstmt.setLong(4, timers.getCount());
                 pstmt.setDouble(5,timers.getMeanrate());
                 pstmt.setDouble(6,timers.getOnemrate());
                 pstmt.setDouble(7,timers.getFivemrate());
@@ -468,7 +464,6 @@ public class MysqlReporter extends ScheduledReporter {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            timersList = null;
             dao.close(pstmt,con);
         }
 
@@ -507,7 +502,6 @@ public class MysqlReporter extends ScheduledReporter {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            healthChecksList = null;
             dao.close(pstmt,con);
         }
 

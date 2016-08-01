@@ -6,7 +6,7 @@
 
     <groupId>com.amon.personshare</groupId>
     <artifactId>metrics_mysql</artifactId>
-    <version>1.0-RELEASES</version>
+    <version>2.0-RELEASES</version>
     <packaging>jar</packaging>
     
 

@@ -9,7 +9,7 @@ public class Timers {
     private String appname;
     private long tm;
     private String metricskey;
-    private int count;
+    private long count;
     private double meanrate;
     private double onemrate;
     private double fivemrate;
@@ -28,25 +28,37 @@ public class Timers {
     public Timers() {
     }
 
-    public Timers(String appname, long tm, String metricskey, int count, double meanrate, double onemrate, double fivemrate, double fifmrate, double min, double max, double mean, double stddev, double median, double senvenfive, double ninefive, double nineeight, double ninenine, double nineninenine) {
-        this.appname = appname;
-        this.tm = tm;
-        this.metricskey = metricskey;
+    @Override
+    public String toString() {
+        return "Timers{" +
+                "id=" + id +
+                ", appname='" + appname + '\'' +
+                ", tm=" + tm +
+                ", metricskey='" + metricskey + '\'' +
+                ", count=" + count +
+                ", meanrate=" + meanrate +
+                ", onemrate=" + onemrate +
+                ", fivemrate=" + fivemrate +
+                ", fifmrate=" + fifmrate +
+                ", min=" + min +
+                ", max=" + max +
+                ", mean=" + mean +
+                ", stddev=" + stddev +
+                ", median=" + median +
+                ", senvenfive=" + senvenfive +
+                ", ninefive=" + ninefive +
+                ", nineeight=" + nineeight +
+                ", ninenine=" + ninenine +
+                ", nineninenine=" + nineninenine +
+                '}';
+    }
+
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
         this.count = count;
-        this.meanrate = meanrate;
-        this.onemrate = onemrate;
-        this.fivemrate = fivemrate;
-        this.fifmrate = fifmrate;
-        this.min = min;
-        this.max = max;
-        this.mean = mean;
-        this.stddev = stddev;
-        this.median = median;
-        this.senvenfive = senvenfive;
-        this.ninefive = ninefive;
-        this.nineeight = nineeight;
-        this.ninenine = ninenine;
-        this.nineninenine = nineninenine;
     }
 
     public int getId() {
@@ -79,14 +91,6 @@ public class Timers {
 
     public void setMetricskey(String metricskey) {
         this.metricskey = metricskey;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public double getMeanrate() {

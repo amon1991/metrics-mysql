@@ -9,7 +9,7 @@ public class Meters {
     private String appname;
     private long tm;
     private String metricskey;
-    private int count;
+    private long count;
     private double meanrate;
     private double onemrate;
     private double fivemrate;
@@ -18,15 +18,27 @@ public class Meters {
     public Meters() {
     }
 
-    public Meters(String appname, long tm, String metricskey, int count, double meanrate, double onemrate, double fivemrate, double fifmrate) {
-        this.appname = appname;
-        this.tm = tm;
-        this.metricskey = metricskey;
+    @Override
+    public String toString() {
+        return "Meters{" +
+                "id=" + id +
+                ", appname='" + appname + '\'' +
+                ", tm=" + tm +
+                ", metricskey='" + metricskey + '\'' +
+                ", count=" + count +
+                ", meanrate=" + meanrate +
+                ", onemrate=" + onemrate +
+                ", fivemrate=" + fivemrate +
+                ", fifmrate=" + fifmrate +
+                '}';
+    }
+
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
         this.count = count;
-        this.meanrate = meanrate;
-        this.onemrate = onemrate;
-        this.fivemrate = fivemrate;
-        this.fifmrate = fifmrate;
     }
 
     public int getId() {
@@ -59,14 +71,6 @@ public class Meters {
 
     public void setMetricskey(String metricskey) {
         this.metricskey = metricskey;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public double getMeanrate() {
